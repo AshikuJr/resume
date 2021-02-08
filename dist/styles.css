@@ -354,7 +354,7 @@ template {
 
 .hero{height:100vh;background:#1e1e1e url(assets/full.jpg) center 20% no-repeat;background-size:cover;background-attachment:fixed;color:white;display:flex;justify-content:space-between;align-items:center}
 
-.skills{height:120vh;background:#1e1e1e url(assets/full-skills.jpg) center no-repeat;background-size:cover}
+.skills{height:120vh;background:#1e1e1e url(assets/full-skills.jpg) center top no-repeat;background-size:cover}
 
 .works{height:100vh;background-color:#499cd6}
 
