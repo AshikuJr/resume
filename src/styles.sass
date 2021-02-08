@@ -1,0 +1,42 @@
+@import '/src/settings/normalize.css'
+@import 'src/fonts/fonts'
+@import 'src/settings/vars'
+@import 'src/settings/mixins'
+
+*
+  margin: 0
+  box-sizing: border-box
+  font-family: 'victor_thin'
+  scroll-behavior: smooth
+
+a
+  -webkit-tap-highlight-color: transparent
+  text-decoration: none
+  color: $black
+
+body
+  &::-webkit-scrollbar
+    width: 0px
+
+button
+  -webkit-tap-highlight-color: transparent
+  border: none
+  background-color: transparent
+  &:hover
+    cursor: pointer
+  &:active
+    outline: none
+  &:focus
+    outline: none
+
+.container
+  margin: 0 auto
+  max-width: 1200px
+  +l
+    max-width: 900px
+  +m
+    max-width: 600px
+  +s
+    max-width: 300px
+  +xs
+    max-width: 98vw

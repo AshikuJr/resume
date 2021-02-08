@@ -1,0 +1,136 @@
+@import 'src/settings/vars'
+@import 'src/settings/mixins'
+
+@keyframes activate
+  from
+    transform: rotate(0)
+    border: none
+  to
+    transform: rotate(90deg)
+    border: 2px solid $red
+
+.menu
+  font-size: 2rem
+  position: relative
+  transition: 0.5s
+  top: 0px
+  left: 0px
+  +s
+    position: absolute
+    top: 30px
+    left: 30px
+  +xs
+    left: 20px
+  &_active
+    top: 70px
+    left: 100px
+    +m
+      top: 0
+      left: 0
+      font-size: 2rem
+    +s
+      font-size: 5vw
+      left: 50%
+      top: 50%
+      transform: translate(-50%, -50%)
+    +dwarf
+      font-size: 1.5rem
+  &::before
+    content: '<'
+  &::after
+    content: '/>'
+  &__component
+    color: $green
+    font-family: 'victor_regular'
+    display: none
+  &__prop
+    color: $lightblue
+    display: none
+  &__value
+    color: $orange
+    display: none
+  &__link
+    font-family: 'victor_oblique'
+    color: $yellow
+    transition: color 0.2s, letter-spacing 0.2s, font-size 0.2s
+    display: none
+    &:hover
+      color: $red
+      font-family: 'victor_regular'
+      letter-spacing: 0.1em
+      font-size: 1.5em
+      +m
+        font-size: 1em
+
+.navbar
+  background-color: transparent
+  position: fixed
+  width: 100vw
+  padding-top: 20px
+  transition: background-color 0.5s 1s
+  &_active
+    background-color: $black
+    transition: background-color 1s
+  &-wrap
+    width: 100%
+    min-height: 100vh
+    color: white
+    display: flex
+    align-items: start
+    justify-content: space-between
+    white-space: pre
+  &__hamburger
+    position: relative
+    height: 60px
+    width: 60px
+    border-radius: 60px
+    transition: transform 0.2s, border 0.2s
+    +s
+      position: absolute
+      right: 30px
+    +xs
+      right: 10px
+    span
+      position: absolute
+      background-color: white
+      height: 4px
+      border-radius: 6px
+      content: ''
+      transition: min-width 0.2s, background-color 0.2s 0.2s, transform 0.2s 0.2s
+      &:nth-child(1)
+        top: 12px
+        right: 9px
+        min-width: 38px
+      &:nth-child(2)
+        top: 26px
+        right: 9px
+        min-width: 30px
+      &:nth-child(3)
+        top: 41px
+        right: 9px
+        min-width: 20px
+    &:hover
+      span
+        min-width: 38px
+        background-color: $green
+        transition: min-width 0.2s, background-color 0.2s, transform 0.2s 0.2s
+    &_active
+      transform: rotate(180deg)
+      border: 2px solid $red
+      transition: transform 0.5s 0.5s, border 0.5s 0.5s
+      +s
+        display: none
+      span
+        background-color: $red !important
+        width: 38px
+        transition: min-width 0.2s, background-color 0.2s, transform 0.5s
+        &:nth-child(1)
+          transform: translateY(15px) rotate(45deg)
+        &:nth-child(2)
+          transform: scale(0)
+        &:nth-child(3)
+          transform: translateY(-15px) rotate(-45deg)
+      &:hover
+        span
+          width: 38px
+          transition: min-width 0.2s, background-color 0.2s 0.2s, transform 0.5s

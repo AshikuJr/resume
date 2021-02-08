@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "victor_oblique";
+  src: url("victormono-semiboldoblique-webfont.eot");
+  src: url("victormono-semiboldoblique-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("victormono-semiboldoblique-webfont.woff2") format("woff2"),
+    url("victormono-semiboldoblique-webfont.woff") format("woff"),
+    url("victormono-semiboldoblique-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "victor_thin";
+  src: url("victormono-thin-webfont.eot");
+  src: url("victormono-thin-webfont.eot?#iefix") format("embedded-opentype"),
+    url("victormono-thin-webfont.woff2") format("woff2"),
+    url("victormono-thin-webfont.woff") format("woff"),
+    url("victormono-thin-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "victor_regular";
+  src: url("victormono-regular-webfont.eot");
+  src: url("victormono-regular-webfont.eot?#iefix") format("embedded-opentype"),
+    url("victormono-regular-webfont.woff2") format("woff2"),
+    url("victormono-regular-webfont.woff") format("woff"),
+    url("victormono-regular-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
