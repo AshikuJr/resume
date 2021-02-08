@@ -4,7 +4,7 @@ import './hero.sass';
 const Hero = props => { 
   function tiltBG(){
     let hero = document.querySelector('.hero');
-    hero.style.backgroundPosition = `center ${window.pageYOffset}px`;
+    hero.style.backgroundPosition = `center ${document.documentElement.scrollTop}px`;
   }
   useEffect(()=>{
     window.addEventListener('scroll', tiltBG);
@@ -13,7 +13,7 @@ const Hero = props => {
     }
   });
   return <section className="hero">
-    <h1 className="hero__title">некит дебик</h1>
+    <h1 className="hero__title">некит пидар</h1>
   </section>
 };
 
