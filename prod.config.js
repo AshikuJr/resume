@@ -37,7 +37,8 @@ module.exports = {
               [
                 '@babel/preset-env',
                 {
-                  modules: false
+                  modules: false,
+                  exclude: ["transform-async-to-generator", "transform-regenerator"]
                 }
               ], 
               '@babel/preset-react']
