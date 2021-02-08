@@ -63,6 +63,7 @@
         font-size: 1em
 
 .navbar
+  z-index: 1000
   background-color: transparent
   position: fixed
   width: 100vw
@@ -118,8 +119,6 @@
       transform: rotate(180deg)
       border: 2px solid $red
       transition: transform 0.5s 0.5s, border 0.5s 0.5s
-      +s
-        display: none
       span
         background-color: $red !important
         width: 38px
