@@ -4,20 +4,14 @@
 .hero
   height: 100vh
   color: white
+  background: $black url('./full.jpg') no-repeat
+  background-position: center 0px
+  background-size: cover
+  background-attachment: scroll
   display: flex
   justify-content: space-evenly
   align-items: center
   text-align: center
-  &__bg
-    z-index: -100
-    position: fixed
-    background: $black url('./full.jpg') center 20% no-repeat
-    background-size: cover
-    min-height: 100%
-    min-width: 100%
-    width: auto
-    height: auto
-    margin: 0
   &__title
     font-size: 4em
     font-family: 'victor_thin'

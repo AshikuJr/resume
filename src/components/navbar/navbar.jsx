@@ -52,7 +52,7 @@ const Menu = props => {
     if (current === 11 && !open || current === 1 && open){
       props.setAlter(false)
       setCurrent(0);
-      props.setOpen(!open)
+      props.setOpen(!open);
     }else{
       setCurrent(open ? current - 1 : current + 1);
     }
@@ -90,6 +90,7 @@ const Navbar = props => {
     navbar.classList.toggle('navbar_active');
     let menu = document.querySelector('.menu');
     menu.classList.toggle('menu_active');
+    (document.body.style.overflow === 'hidden') ? setTimeout(()=>{document.body.style.overflow = ''}, 1500) : document.body.style.overflow = 'hidden';
   }
 
   return <header className="navbar">
