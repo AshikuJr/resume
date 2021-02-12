@@ -8,7 +8,6 @@
   box-sizing: border-box
   font-family: 'victor_thin'
   scroll-behavior: smooth
-  scroll-margin-top: -20px
 
 a
   -webkit-tap-highlight-color: transparent
@@ -17,12 +16,14 @@ a
 
 body
   background-color: rgba(black, 0.4)
+  overflow-x: hidden
   &::-webkit-scrollbar
     width: 0px
 
 button
   -webkit-tap-highlight-color: transparent
   border: none
+  padding: 0px
   background-color: transparent
   &:hover
     cursor: pointer

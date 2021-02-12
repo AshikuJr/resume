@@ -72,14 +72,18 @@
   &_active
     background-color: $black
     transition: background-color 1s
+    .navbar-wrap
+      min-height: 100vh
+      transition: 0s
   &-wrap
     width: 100%
-    min-height: 100vh
+    min-height: 0px
     color: white
     display: flex
     align-items: start
     justify-content: space-between
     white-space: pre
+    transition: min-height 0s 1.5s
   &__hamburger
     position: relative
     height: 60px

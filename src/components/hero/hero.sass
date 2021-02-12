@@ -3,25 +3,30 @@
 
 .hero
   height: 100vh
+  width: 100%
   color: white
+  background-image: url('./full.jpg')
+  background-repeat: no-repeat
+  background-position: center top
+  background-size: cover
+  background-attachment: fixed
+  will-change: transform
   display: flex
-  justify-content: space-evenly
+  flex-direction: column
+  justify-content: center
   align-items: center
   text-align: center
-  &::before
-    background-image: url('./full.jpg')
-    background-repeat: no-repeat
-    background-position: center top
-    background-size: cover
-    content: ''
-    height: 100%
-    left: 0
-    position: fixed
-    top: 0
-    width: 100%
-    will-change: transform
-    z-index: -1
   &__title
     font-size: 4em
     font-family: 'victor_thin'
     text-transform: uppercase
+    +s
+      font-size: 2em
+  &__subtitle
+    font-size: 8em
+    font-family: 'victor_thin'
+    text-transform: uppercase
+    +m
+      font-size: 6em
+    +s
+      font-size: 4em

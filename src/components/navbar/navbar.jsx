@@ -90,7 +90,7 @@ const Navbar = props => {
     navbar.classList.toggle('navbar_active');
     let menu = document.querySelector('.menu');
     menu.classList.toggle('menu_active');
-    (document.body.style.overflow === 'hidden') ? setTimeout(()=>{document.body.style.overflow = ''}, 1500) : document.body.style.overflow = 'hidden';
+    (document.body.style.overflowY === 'hidden') ? setTimeout(()=>{document.body.style.overflow = ''}, 1500) : document.body.style.overflowY = 'hidden';
   }
 
   return <header className="navbar">
