@@ -54,7 +54,13 @@ const Description = props => {
   useEffect(()=>{
     let timer;
     if (document.hasFocus()){
-      timer = setTimeout(() => setPhrase((phrase === length - 1) ? 0 : (phrase + 1)), 5000);
+      timer = setTimeout(() => {
+        if (phrase === length - 1){
+          props.setCurrent(0);
+        }else{
+          setPhrase(phrase + 1);
+        }
+      }, 4000);
     }
     return () => {
       clearTimeout(timer);
@@ -77,11 +83,11 @@ const Skills = props => {
   return <section className="skills" id='skills'>
     <h2 className="skills__title">мои навыки</h2>
     <span className="skills__subtitle">{(current!=0)&&titles[current-1]}</span>
-    {(current==1)&&<Description current = {1}/>}
-    {(current==2)&&<Description current = {2}/>}
-    {(current==3)&&<Description current = {3}/>}
-    {(current==4)&&<Description current = {4}/>}
-    {(current==5)&&<Description current = {5}/>}
+    {(current==1)&&<Description current = {1} setCurrent = {setCurrent}/>}
+    {(current==2)&&<Description current = {2} setCurrent = {setCurrent}/>}
+    {(current==3)&&<Description current = {3} setCurrent = {setCurrent}/>}
+    {(current==4)&&<Description current = {4} setCurrent = {setCurrent}/>}
+    {(current==5)&&<Description current = {5} setCurrent = {setCurrent}/>}
     <div className="skills-wrap">
       <SkillBlock active = {current === 1}
       icon = {css}
