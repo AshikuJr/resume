@@ -1,6 +1,113 @@
 @import 'src/settings/vars'
 @import 'src/settings/mixins'
 
+.account
+  height: 80px
+  display: flex
+  align-items: center
+  &__icon
+    margin-right: 20px
+    width: 40px
+  &__info
+    font-family: 'victor_thin'
+    font-size: 2em
+    +l
+      font-size: 1.8em
+    +s
+      font-size: 1.2em
+
+.form
+  grid-area: f
+  display: grid
+  grid-template-columns: 5fr 2fr 3fr
+  grid-template-rows: 200px 80px 200px 80px
+  grid-gap: 20px
+  grid-template-areas: 'title title title' 'name theme theme' 'comment comment comment' 'email email button'
+  +s
+    grid-template-columns: 1fr
+    grid-template-rows: 200px 80px 80px 200px 80px 80px
+    grid-template-areas: 'title' 'name' 'theme' 'comment' 'email' 'button'
+  &__title
+    grid-area: title
+    justify-self: end
+    align-self: center
+    font-family: 'victor_thin'
+    font-weight: 100
+    font-size: 4em
+    text-transform: uppercase
+    +m
+      justify-self: start
+    +s
+      font-size: 3em
+  &-short
+    position: relative
+    height: 80px
+  &-area
+    position: relative
+    height: 200px
+  &-button
+    grid-area: button
+    justify-self: end
+    height: 80px
+    width: 100%
+    font-family: 'victor_regular'
+    font-size: 2em
+    text-transform: uppercase
+    letter-spacing: 0.06em
+    background-color: $red
+    color: white
+    cursor: pointer
+  &__label
+    position: absolute
+    top: 27px
+    left: 10px
+    font-size: 1.5em
+    letter-spacing: 0.09em
+    color: black
+    transition: 0.2s
+    &_active
+      font-size: 10px
+      left: 10px
+      top: 10px
+  &__input
+    resize: none
+    width: 100%
+    height: 100%
+    padding: 10px 10px 0px
+    font-size: 1.5em
+  &__textarea
+    resize: none
+    width: 100%
+    height: 100%
+    padding: 27px 10px
+    font-size: 1.5em
+
 .contacts
-  height: 100vh
   background-color: $black
+  &-wrap
+    min-height: 100vh
+    padding: 60px 0
+    color: white
+    display: grid
+    align-content: center
+    grid-template-columns: 4.5fr 5.5fr
+    grid-template-areas: 'r f'
+    +m
+      grid-template-columns: 1fr
+      grid-template-areas: 'f' 'r'
+  &-rest
+    grid-area: r
+    display: grid
+    grid-template-rows: 200px 100px 100px 100px
+    +m
+      grid-template-rows: 200px 80px 80px 80px
+  &__title
+    font-family: 'victor_thin'
+    font-weight: 100
+    font-size: 4em
+    text-transform: uppercase
+    align-self: center
+    +m
+      margin-top: 60px
+    +s
+      font-size: 3em
