@@ -52,15 +52,23 @@ const Works = props => {
   };
   let [current, setCurrent] = useState(0);
   let [loaded, setLoaded] = useState(false);
+  let [alter, setAlter] = useState(false);
+  function switchCurrent(id){
+    if (!alter){
+      setAlter(true);
+      setTimeout(() => setAlter(false), 500);
+      setCurrent(id);
+    }
+  }
   useEffect(() => {
     const images = portfolio.map(work => work.bg);
     preload(images);
   }, []);
   return <section className="works" id='works' style = {{backgroundImage: (current == 0) ? `url(${black})` : `url(${portfolio[current - 1].bg})`}}>
-    <Work icon = {sqwdIcon} onClick = {() => setCurrent(1)}/>
-    <Work icon = {giftIcon} onClick = {() => setCurrent(2)}/>
-    <Work icon = {vpnIcon} onClick = {() => setCurrent(3)}/>
-    {(loaded === true)&&<div className='works-central' onClick = {() => setCurrent(0)}>
+    <Work icon = {sqwdIcon} onClick = {() => switchCurrent(1)}/>
+    <Work icon = {giftIcon} onClick = {() => switchCurrent(2)}/>
+    <Work icon = {vpnIcon} onClick = {() => switchCurrent(3)}/>
+    {(loaded === true)&&<div className='works-central' onClick = {() => switchCurrent(0)}>
       <h2 className="works-central__title">{(current == 0) ? 'примеры\nработ' : portfolio[current - 1].title}</h2>
       {(current != 0)&&<p className="works-central__description">{portfolio[current - 1].description}</p>} 
       {(current != 0)&&<a href={portfolio[current - 1].link} className="works-central__seemore" target='_blank' onClick = {(event) => event.stopPropagation()}>Открыть</a>}

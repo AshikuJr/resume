@@ -5,17 +5,25 @@
   height: 100vh
   width: 100%
   color: white
-  background-image: url('./full.jpg')
-  background-repeat: no-repeat
-  background-position: center top
-  background-size: cover
-  background-attachment: fixed
-  will-change: transform
+  background-color: #646464
   display: flex
   flex-direction: column
   justify-content: center
   align-items: center
   text-align: center
+  &-bg
+    z-index: -10
+    position: absolute
+    width: 100%
+    height: 100%
+    background-image: url('./full.jpg')
+    background-size: cover
+    background-attachment: fixed
+    background-position: center 20%
+    will-change: transform
+  &_loaded
+    background-color: transparent
+    transition: background-color 0.5s 0.5s
   &__title
     font-size: 4em
     font-family: 'victor_thin'

@@ -9,6 +9,7 @@
     margin-right: 20px
     width: 40px
   &__info
+    color: white
     font-family: 'victor_thin'
     font-size: 2em
     +l
@@ -27,6 +28,8 @@
     grid-template-columns: 1fr
     grid-template-rows: 200px 80px 80px 200px 80px 80px
     grid-template-areas: 'title' 'name' 'theme' 'comment' 'email' 'button'
+  &_invalid
+    border: 4px solid $red
   &__title
     grid-area: title
     justify-self: end
@@ -50,36 +53,36 @@
     justify-self: end
     height: 80px
     width: 100%
+    padding: 0 10px
     font-family: 'victor_regular'
     font-size: 2em
     text-transform: uppercase
-    letter-spacing: 0.06em
     background-color: $red
     color: white
     cursor: pointer
   &__label
     position: absolute
     top: 27px
-    left: 10px
+    left: 20px
     font-size: 1.5em
     letter-spacing: 0.09em
     color: black
     transition: 0.2s
     &_active
       font-size: 10px
-      left: 10px
+      left: 20px
       top: 10px
   &__input
     resize: none
     width: 100%
     height: 100%
-    padding: 10px 10px 0px
+    padding: 10px 20px 0px
     font-size: 1.5em
   &__textarea
     resize: none
     width: 100%
     height: 100%
-    padding: 27px 10px
+    padding: 27px 20px
     font-size: 1.5em
 
 .contacts
