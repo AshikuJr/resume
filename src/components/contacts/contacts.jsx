@@ -20,7 +20,7 @@ const FormInput = props => {
   };
   return <div className="form-short" style={{gridArea: props.name}}>
     <label htmlFor = {props.name} className = 'form__label' onClick={setFocus}>{props.label}</label>
-    <input type={props.type} name = {props.name} className="form__input" value={value} onChange = {handleChange} onFocus = {moveLabel} onBlur = {(event) => {
+    <input type={props.type} name = {props.name} className="form__input" value={value} onChange = {handleChange} onFocus = {props.active ? moveLabel : e => e.target.blur()} onBlur = {(event) => {
       moveLabel(event);
       let valid = (props.name == 'email') ? mailRegExp.test(value) : value != '';
       valid
@@ -43,7 +43,7 @@ const FormArea = props => {
   };
   return <div className="form-area" style={{gridArea: props.name}}>
     <label htmlFor = {props.name} className = 'form__label' onClick={setFocus}>{props.label}</label>
-    <textarea type="text" name = {props.name} className="form__textarea" value={value} onChange = {handleChange} onFocus = {moveLabel} onBlur = {(event) => {
+    <textarea type="text" name = {props.name} className="form__textarea" value={value} onChange = {handleChange} onFocus = {props.active ? moveLabel : e => e.target.blur()} onBlur = {(event) => {
       moveLabel(event);
       value != ''
       ? event.target.classList.contains('form_invalid')&&event.target.classList.remove('form_invalid') 
@@ -61,6 +61,7 @@ const Account = props => {
 };
 
 const Contacts = props => {
+  let [submitted, setSubmitted] = useState(false);
   function validate(event){
     event.preventDefault();
     const form = document.forms.feedback;
@@ -89,7 +90,24 @@ const Contacts = props => {
     }else{
       form.email.classList.contains('form_invalid')&&form.email.classList.remove('form_invalid');
     };
-    isOK&&form.submit();
+    return isOK
+  };
+
+  async function formSubmit(event){
+    if (!validate(event)) return
+    let response = await fetch('mail.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify({
+        name: document.forms.feedback.name.value,
+        email: document.forms.feedback.email.value,
+        theme: document.forms.feedback.theme.value,
+        comment: document.forms.feedback.comment.value
+      })
+    });
+    setSubmitted(true);
   };
 
   return <footer className="contacts" id='contacts'>
@@ -101,13 +119,13 @@ const Contacts = props => {
           <Account icon = {discord} info = 'AshikuJr#0299'/>
           <Account icon = {github} info = 'github.com/AshikuJr'/>
         </div>
-        <form noValidate autoComplete = 'off' className='form' action="#" method='post' name='feedback' onSubmit = {validate}>
+        <form noValidate className={submitted ? 'form form_submitted' : 'form'} action="mail.php" method='post' name='feedback' onSubmit = {formSubmit}>
           <h3 className="form__title">Обратная связь</h3>
-          <FormInput name='name' type='text' label='Ваше имя'/>
-          <FormInput name='theme' type='text' label='Тема сообщения'/>
-          <FormArea name='comment' label='Сообщение'/>
-          <FormInput name='email' type='email' label='Ваша почта'/>
-          <input type="submit" className="form-button"/>
+          <FormInput name='name' type='text' label='Ваше имя' active = {!submitted}/>
+          <FormInput name='theme' type='text' label='Тема сообщения' active = {!submitted}/>
+          <FormArea name='comment' label='Сообщение' active = {!submitted}/>
+          <FormInput name='email' type='email' label='Ваша почта' active = {!submitted}/>
+          <input type="submit" className="form-button" value = {submitted ? 'Готово!' : 'Отправить'} onClick = {e => submitted&&e.preventDefault()}/>
         </form>
       </div>
     </div>
