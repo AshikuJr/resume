@@ -64,7 +64,7 @@ const Works = props => {
     const images = portfolio.map(work => work.bg);
     preload(images);
   }, []);
-  return <section className="works" id='works' style = {{backgroundImage: (current == 0) ? `url(${black})` : `url(${portfolio[current - 1].bg})`}}>
+  return <section className="works" id='projects' style = {{backgroundImage: (current == 0) ? `url(${black})` : `url(${portfolio[current - 1].bg})`}}>
     <Work icon = {sqwdIcon} onClick = {() => switchCurrent(1)}/>
     <Work icon = {giftIcon} onClick = {() => switchCurrent(2)}/>
     <Work icon = {vpnIcon} onClick = {() => switchCurrent(3)}/>

@@ -70,8 +70,8 @@ const Menu = props => {
     <MenuLink toggler={props.toggler} key={5} src='#' text='На главную' active = {(current === 5)&&props.alter ? true : false} open = {props.open} collapse={collapse}/>
     <MenuProp key={6} text='skills' extraSpace={7} active = {(current === 6)&&props.alter ? true : false} open = {props.open} collapse={collapse}/>
     <MenuLink toggler={props.toggler} key={7} src='#skills' text='Навыки' active = {(current === 7)&&props.alter ? true : false}  open = {props.open} collapse={collapse}/>
-    <MenuProp key={8} text='works' extraSpace={5} active = {(current === 8)&&props.alter ? true : false} open = {props.open} collapse={collapse}/>
-    <MenuLink toggler={props.toggler} key={9} src='#works' text='Портфолио' active = {(current === 9)&&props.alter ? true : false}  open = {props.open} collapse={collapse}/>
+    <MenuProp key={8} text='projects' extraSpace={5} active = {(current === 8)&&props.alter ? true : false} open = {props.open} collapse={collapse}/>
+    <MenuLink toggler={props.toggler} key={9} src='#projects' text='Портфолио' active = {(current === 9)&&props.alter ? true : false}  open = {props.open} collapse={collapse}/>
     <MenuProp key={10} text='contacts' extraSpace={3} active = {(current === 10)&&props.alter ? true : false} open = {props.open} collapse={collapse}/>
     <MenuLink toggler={props.toggler} key={11} src='#contacts' text='Контакты' active = {(current === 11)&&props.alter ? true : false} open = {props.open} collapse={collapse}/>
   </div>
