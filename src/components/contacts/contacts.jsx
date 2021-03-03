@@ -115,9 +115,18 @@ const Contacts = props => {
       <div className="contacts-wrap">
         <div className="contacts-rest">
           <h2 className="contacts__title">контакты</h2>
-          <Account icon = {email} info = 'AshikuJr@gmail.com'/>
-          <Account icon = {discord} info = 'AshikuJr#0299'/>
-          <Account icon = {github} info = 'github.com/AshikuJr'/>
+          <div className="account">
+            <img src={email} alt="" className="account__icon"/>
+            <a href="mailto:ashikujr@gmail.com" className="account__info">AshikuJr@gmail.com</a>
+          </div>
+          <div className="account">
+            <img src={discord} alt="" className="account__icon"/>
+            <span className="account__info">Михаил Козлов#0299</span>
+          </div>
+          <div className="account">
+            <img src={github} alt="" className="account__icon"/>
+            <a href="https://github.com/AshikuJr" target='_blank' className="account__info">github.com/AshikuJr</a>
+          </div>
         </div>
         <form noValidate className={submitted ? 'form form_submitted' : 'form'} action="mail.php" method='post' name='feedback' onSubmit = {formSubmit}>
           <h3 className="form__title">Обратная связь</h3>

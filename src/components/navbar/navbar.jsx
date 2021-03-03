@@ -50,7 +50,11 @@ const Menu = props => {
         menu.childNodes[current-1].style.display = 'inline';
       }
     if (current === 11 && !open || current === 1 && open){
-      props.setAlter(false)
+      if (open) { 
+        await new Promise(resolve => setTimeout(resolve, 700));
+        document.body.style.overflow = '';
+      }
+      props.setAlter(false);
       setCurrent(0);
       props.setOpen(!open);
     }else{
@@ -83,14 +87,14 @@ const Navbar = props => {
 
   function toggler(event){
     if (alter) return
-    let ham = document.querySelector('.navbar__hamburger');
     setAlter(true);
+    if (!open) document.body.style.overflow = 'hidden';
+    let ham = document.querySelector('.navbar__hamburger');
     ham.classList.toggle('navbar__hamburger_active');
     let navbar = document.querySelector('.navbar');
     navbar.classList.toggle('navbar_active');
     let menu = document.querySelector('.menu');
     menu.classList.toggle('menu_active');
-    (document.body.style.overflowY === 'hidden') ? setTimeout(()=>{document.body.style.overflow = ''}, 1500) : document.body.style.overflowY = 'hidden';
   }
 
   return <header className="navbar">
