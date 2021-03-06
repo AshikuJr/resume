@@ -91,34 +91,11 @@ const Skills = props => {
     setAlter(false);
   }
 
-  async function phraseDecrement(){
-    if (alter) return
-    setAlter(true);
-    fade(document.querySelector('.skills__description'));
-    await new Promise(resolve => setTimeout(resolve, 500));
-    setPhrase((phrase == 1) ? descriptions[current - 1].length : (phrase - 1));
-    setAlter(false);
-  }
-
-
   return <section className="skills" id='skills'>
     <h2 className="skills__title">мои навыки</h2>
     <span className="skills__subtitle">{(current!=0)&&titles[current-1]}</span>
     {(current!=0)&&<div className="skills__description"
-    onPointerDown = {event => {
-      initX = event.clientX;
-      console.log('down ' + event.clientX);
-    }}
-    onPointerUp = {event => {
-      if (event.clientX - initX < -100){
-        phraseIncrement();
-      }else{
-        phraseDecrement();
-      }
-      initX = 0;
-      console.log('up ' + event.clientX);
-    }}
-    draggable='false'>{descriptions[current - 1][phrase - 1]}</div>}
+    onClick = {phraseIncrement}>{descriptions[current - 1][phrase - 1]}</div>}
     {(current!=0)&&<div className="skills__indicators">
       <span className={"skills__indicator" + ((phrase == 1) ? ' skills__indicator_active' : ((descriptions[current - 1].length >= 1) ? '' : ' skills__indicator_inactive'))}></span>
       <span className={"skills__indicator" + ((phrase == 2) ? ' skills__indicator_active' : ((descriptions[current - 1].length >= 2) ? '' : ' skills__indicator_inactive'))}></span>
