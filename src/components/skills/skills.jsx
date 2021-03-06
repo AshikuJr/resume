@@ -95,7 +95,8 @@ const Skills = props => {
     <h2 className="skills__title">мои навыки</h2>
     <span className="skills__subtitle">{(current!=0)&&titles[current-1]}</span>
     {(current!=0)&&<div className="skills__description"
-    onClick = {phraseIncrement}>{descriptions[current - 1][phrase - 1]}</div>}
+    onClick = {phraseIncrement}
+    >{descriptions[current - 1][phrase - 1]}</div>}
     {(current!=0)&&<div className="skills__indicators">
       <span className={"skills__indicator" + ((phrase == 1) ? ' skills__indicator_active' : ((descriptions[current - 1].length >= 1) ? '' : ' skills__indicator_inactive'))}></span>
       <span className={"skills__indicator" + ((phrase == 2) ? ' skills__indicator_active' : ((descriptions[current - 1].length >= 2) ? '' : ' skills__indicator_inactive'))}></span>
