@@ -111,9 +111,9 @@ const Skills = props => {
     }}
     onPointerUp = {event => {
       if (event.clientX - initX < -100){
-        phraseDecrement();
-      }else{
         phraseIncrement();
+      }else{
+        phraseDecrement();
       }
       initX = 0;
       console.log('up ' + event.clientX);
