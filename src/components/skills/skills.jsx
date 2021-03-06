@@ -48,72 +48,101 @@ const SkillBlock = props => {
   </div>
 };
 
-const Description = props => {
-  let [phrase, setPhrase] = useState(0);
-  let length = descriptions[props.current - 1].length;
-  useEffect(()=>{
-    let timer;
-    if (document.hasFocus()){
-      timer = setTimeout(() => {
-        if (phrase === length - 1){
-          props.setCurrent(0);
-        }else{
-          setPhrase(phrase + 1);
-        }
-      }, 4000);
-    }
-    return () => {
-      clearTimeout(timer);
-    }
-  });
-  return <p className="skills__description">{descriptions[props.current - 1][phrase]}</p>
-};
-
 const Skills = props => {
   let [current, setCurrent] = useState(0);
-  function hideOnBlur(){
-    setCurrent(0);
+  let [phrase, setPhrase] = useState(1);
+  let [alter, setAlter] = useState(false);
+
+  let initX = 0;
+
+  async function fade(node){
+    node.style.opacity = '0';
+    await new Promise(resolve => setTimeout(resolve, 600));
+    node.style.opacity = '1';
   }
-  useEffect(()=>{
-    window.addEventListener('blur', hideOnBlur);
-    return () => {
-      window.removeEventListener('blur', hideOnBlur);
+  async function skillblockClickHandler(number){
+    if (alter) return
+    if (number == current) {
+      setCurrent(0);
+      return
     }
-  });
+    if (current == 0){
+      setCurrent(number);
+      setPhrase(1);
+      return
+    }
+    setAlter(true);
+    fade(document.querySelector('.skills__description'));
+    fade(document.querySelector('.skills__subtitle'));
+    fade(document.querySelector('.skills__indicators'));
+    await new Promise(resolve => setTimeout(resolve, 500));
+    setCurrent(number);
+    setPhrase(1);
+    await new Promise(resolve => setTimeout(resolve, 500));
+    setAlter(false);
+  }
+
+  async function phraseIncrement(){
+    if (alter) return
+    setAlter(true);
+    fade(document.querySelector('.skills__description'));
+    await new Promise(resolve => setTimeout(resolve, 500));
+    setPhrase((phrase) % descriptions[current-1].length + 1);
+    setAlter(false);
+  }
+
+  async function phraseDecrement(){
+    if (alter) return
+    setAlter(true);
+    fade(document.querySelector('.skills__description'));
+    await new Promise(resolve => setTimeout(resolve, 500));
+    setPhrase((phrase == 1) ? descriptions[current - 1].length : (phrase - 1));
+    setAlter(false);
+  }
+
+
   return <section className="skills" id='skills'>
     <h2 className="skills__title">мои навыки</h2>
     <span className="skills__subtitle">{(current!=0)&&titles[current-1]}</span>
-    {(current==1)&&<Description current = {1} setCurrent = {setCurrent}/>}
-    {(current==2)&&<Description current = {2} setCurrent = {setCurrent}/>}
-    {(current==3)&&<Description current = {3} setCurrent = {setCurrent}/>}
-    {(current==4)&&<Description current = {4} setCurrent = {setCurrent}/>}
-    {(current==5)&&<Description current = {5} setCurrent = {setCurrent}/>}
+    {(current!=0)&&<div className="skills__description"
+    onPointerDown = {event => {
+      initX = event.clientX;
+      console.log('down ' + event.clientX);
+    }}
+    onPointerUp = {event => {
+      if (event.clientX - initX < -100){
+        phraseDecrement();
+      }else{
+        phraseIncrement();
+      }
+      initX = 0;
+      console.log('up ' + event.clientX);
+    }}
+    draggable='false'>{descriptions[current - 1][phrase - 1]}</div>}
+    {(current!=0)&&<div className="skills__indicators">
+      <span className={"skills__indicator" + ((phrase == 1) ? ' skills__indicator_active' : ((descriptions[current - 1].length >= 1) ? '' : ' skills__indicator_inactive'))}></span>
+      <span className={"skills__indicator" + ((phrase == 2) ? ' skills__indicator_active' : ((descriptions[current - 1].length >= 2) ? '' : ' skills__indicator_inactive'))}></span>
+      <span className={"skills__indicator" + ((phrase == 3) ? ' skills__indicator_active' : ((descriptions[current - 1].length >= 3) ? '' : ' skills__indicator_inactive'))}></span>
+      <span className={"skills__indicator" + ((phrase == 4) ? ' skills__indicator_active' : ((descriptions[current - 1].length >= 4) ? '' : ' skills__indicator_inactive'))}></span>
+      <span className={"skills__indicator" + ((phrase == 5) ? ' skills__indicator_active' : ((descriptions[current - 1].length >= 5) ? '' : ' skills__indicator_inactive'))}></span>
+      <span className={"skills__indicator" + ((phrase == 6) ? ' skills__indicator_active' : ((descriptions[current - 1].length >= 6) ? '' : ' skills__indicator_inactive'))}></span>
+    </div>}
     <div className="skills-wrap">
       <SkillBlock active = {current === 1}
       icon = {css}
-      click = {() => {
-        (current != 1) ? setCurrent(1) : setCurrent(0);
-      }}/>
+      click = {() => skillblockClickHandler(1)}/>
       <SkillBlock active = {current === 2}
       icon = {react}
-      click = {() => {
-        (current != 2) ? setCurrent(2) : setCurrent(0);
-      }}/>
+      click = {() => skillblockClickHandler(2)}/>
       <SkillBlock active = {current === 3}
       icon = {webpack}
-      click = {() => {
-        (current != 3) ? setCurrent(3) : setCurrent(0);
-      }}/>
+      click = {() => skillblockClickHandler(3)}/>
       <SkillBlock active = {current === 4}
       icon = {git}
-      click = {() => {
-        (current != 4) ? setCurrent(4) : setCurrent(0);
-      }}/>
+      click = {() => skillblockClickHandler(4)}/>
       <SkillBlock active = {current === 5}
       icon = {me}
-      click = {() => {
-        (current != 5) ? setCurrent(5) : setCurrent(0);
-      }}/>
+      click = {() => skillblockClickHandler(5)}/>
     </div>
   </section>
 };
